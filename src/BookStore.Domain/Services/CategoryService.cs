@@ -41,6 +41,9 @@ namespace BookStore.Domain.Services
             if (_categoryRepository.Search(c => c.Name == category.Name && c.Id != category.Id).Result.Any())
                 return null;
 
+            if (!_categoryRepository.Search(c => c.Id == category.Id).Result.Any())
+                return null;
+
             await _categoryRepository.Update(category);
             return category;
         }

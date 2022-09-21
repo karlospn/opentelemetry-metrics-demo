@@ -2,7 +2,6 @@
 using BookStore.Domain.Models;
 using BookStore.Infrastructure.Context;
 using BookStore.Infrastructure.Metrics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookStore.Infrastructure.Repositories
