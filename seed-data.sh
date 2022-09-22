@@ -3,7 +3,7 @@
 #########################
 ##### Set API URI #######
 #########################
-api_uri=https://localhost:7187
+api_uri=http://localhost:5001
 
 #########################
 ##### Add Categories ####
@@ -25,6 +25,7 @@ curl -k -X 'POST' "${api_uri}/api/Categories" -H 'accept: */*' -H 'Content-Type:
 echo
 curl -k -X 'POST' "${api_uri}/api/Categories" -H 'accept: */*' -H 'Content-Type: application/json' -d '{"name": "Dystopian"}'
 echo
+sleep 5
 
 #########################
 ### Update Categories ###
@@ -36,6 +37,7 @@ curl -k -X 'PUT' "${api_uri}/api/Categories" -H 'accept: */*' -H 'Content-Type: 
 echo
 curl -k -X 'PUT' "${api_uri}/api/Categories" -H 'accept: */*' -H 'Content-Type: application/json' -d '{"id": 6, "name": "Memoir"}'
 echo
+sleep 5
 
 #########################
 ### Delete Categories ###
@@ -45,6 +47,7 @@ curl -k -X 'DELETE' "${api_uri}/api/Categories/6" -H 'accept: */*'
 echo
 curl -k -X 'DELETE' "${api_uri}/api/Categories/3" -H 'accept: */*'
 echo
+sleep 5
 
 #########################
 ###### Add Books  #######
@@ -220,6 +223,7 @@ curl -k -X 'POST' "${api_uri}/api/Books" -H 'accept: */*' -H 'Content-Type: appl
   "publishDate": "2016-02-16T00:00:00.000Z"
 }'
 echo
+sleep 5
 
 #########################
 #### Update Books  ######
@@ -268,6 +272,8 @@ curl -k -X 'PUT' "${api_uri}/api/Books" -H 'accept: */*' -H 'Content-Type: appli
   "value": 9.99,
   "publishDate": "2020-11-24T00:00:00.000Z"
 }'
+echo
+sleep 5
 
 #########################
 #### Delete Books  ######
@@ -277,6 +283,7 @@ curl -k -X 'DELETE' "${api_uri}/api/Books/16" -H 'accept: */*'
 echo
 curl -k -X 'DELETE' "${api_uri}/api/Books/17" -H 'accept: */*'
 echo
+sleep 5
 
 #########################
 #### Add Inventory ######
@@ -372,6 +379,16 @@ curl -k -X 'POST' "${api_uri}/api/Inventories" -H 'accept: */*' -H 'Content-Type
   "amount": 75
 }'
 echo
+sleep 5
+
+#########################
+# Delete fake Inventory #
+#########################
+ 
+curl -X 'DELETE' "${api_uri}/api/Inventories/33" -H 'accept: */*'
+echo
+sleep 5
+
 #########################
 ###### Add Orders  ######
 #########################
@@ -486,6 +503,7 @@ curl -k -X 'POST' "${api_uri}/api/Orders" -H 'accept: */*' -H 'Content-Type: app
   ]
 }'
 echo
+sleep 5
 
 #########################
 ##### Cancel Orders #####
