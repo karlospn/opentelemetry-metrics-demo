@@ -75,7 +75,8 @@ namespace BookStore.WebApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            await _bookService.Update(_mapper.Map<Book>(bookDto));
+            var bookResult = await _bookService.Update(_mapper.Map<Book>(bookDto));
+            if (bookResult == null) return BadRequest();
 
             return Ok(bookDto);
         }
