@@ -1,0 +1,50 @@
+version: '3.8'
+
+networks:
+  metrics:
+    name: bookstore-network
+    
+services:
+  mssql:
+    build: 
+      context: ./scripts/sql
+    ports:
+      - "1433:1433"  
+    environment:
+      SA_PASSWORD: "P@ssw0rd?"
+      ACCEPT_EULA: "Y"
+    networks:
+      - metrics
+
+  prometheus:
+    build: 
+      context: ./scripts/prometheus
+    depends_on:
+      - app
+    ports:
+      - 9090:9090
+    networks:
+      - metrics
+
+  grafana:
+    build: 
+      context: ./scripts/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    networks:
+      - metrics
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./src/BookStore.WebApi/Dockerfile
+    depends_on:
+      - mssql
+    ports:
+      - 5001:8080
+    environment:
+      ConnectionStrings__DbConnection: Server=mssql;Database=BookStore;User Id=SA;Password=P@ssw0rd?
+    networks:
+      - metrics
