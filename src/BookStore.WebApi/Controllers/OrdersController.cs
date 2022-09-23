@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using BookStore.Domain.Interfaces;
 using BookStore.Domain.Models;
-using BookStore.Domain.Services;
-using BookStore.WebApi.Dtos.Book;
-using BookStore.WebApi.Dtos.Category;
 using BookStore.WebApi.Dtos.Order;
 using Microsoft.AspNetCore.Mvc;
 
