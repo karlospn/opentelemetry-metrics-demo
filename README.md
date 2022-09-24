@@ -8,7 +8,7 @@ The repository contains the following applications.
 
 ![application-diagram](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/main/docs/app-otel-metrics-diagram.png)
 
-- The API uses the OpenTelemetry Prometheus exporter package (``OpenTelemetry.Exporter.Prometheus.AspNetCore``) which creates a ``/metrics`` endpoint for Prometheus to scrape.
+- The BookStore WebAPI uses the OpenTelemetry Prometheus exporter package (``OpenTelemetry.Exporter.Prometheus.AspNetCore``) which creates a ``/metrics`` endpoint for Prometheus to scrape.
 - The Prometheus server obtains the metrics from the API
 - The Grafana server comes preconfigured with a few dashboards to visualize the OpenTelemetry metrics emitted by the BookStore WebApi.
 
