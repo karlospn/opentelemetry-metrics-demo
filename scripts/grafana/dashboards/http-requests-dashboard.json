@@ -121,8 +121,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "code",
-              "expr": "sum(rate(http_server_duration_ms_sum[$__rate_interval])) / sum(rate(http_server_duration_ms_count[$__rate_interval]))",
+              "editorMode": "builder",
+              "expr": "sum(rate(http_server_duration_sum[$__rate_interval])) / sum(rate(http_server_duration_count[$__rate_interval]))",
               "legendFormat": "response time",
               "range": true,
               "refId": "A"
@@ -176,7 +176,7 @@
             "h": 6,
             "w": 22,
             "x": 0,
-            "y": 2
+            "y": 13
           },
           "id": 2,
           "options": {
@@ -201,7 +201,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "http_server_duration_ms_count{http_target=\"api/Categories/{id:int}\"}",
+              "expr": "http_server_duration_count{http_target=\"api/Categories/{id:int}\"}",
               "hide": false,
               "legendFormat": "{{http_status_code}} {{http_target}} {{http_method}}",
               "range": true,
@@ -213,7 +213,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "http_server_duration_ms_count{http_target=\"api/Categories\"}",
+              "expr": "http_server_duration_count{http_target=\"api/Categories\"}",
               "hide": false,
               "legendFormat": "{{http_status_code}} {{http_target}} {{http_method}}",
               "range": true,
@@ -254,7 +254,7 @@
             "h": 6,
             "w": 22,
             "x": 0,
-            "y": 8
+            "y": 19
           },
           "id": 9,
           "options": {
@@ -279,7 +279,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "http_server_duration_ms_count{http_target=\"api/Books/{id:int}\"}",
+              "expr": "http_server_duration_count{http_target=\"api/Books/{id:int}\"}",
               "hide": false,
               "legendFormat": "{{http_status_code}} {{http_target}} {{http_method}}",
               "range": true,
@@ -291,7 +291,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "http_server_duration_ms_count{http_target=\"api/Books\"}",
+              "expr": "http_server_duration_count{http_target=\"api/Books\"}",
               "hide": false,
               "legendFormat": "{{http_status_code}} {{http_target}} {{http_method}}",
               "range": true,
@@ -332,7 +332,7 @@
             "h": 6,
             "w": 22,
             "x": 0,
-            "y": 14
+            "y": 25
           },
           "id": 10,
           "options": {
@@ -356,8 +356,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "http_server_duration_ms_count{http_target=\"api/Inventories\"}",
+              "editorMode": "code",
+              "expr": "http_server_duration_count{http_target=\"api/Inventories\"}",
               "hide": false,
               "legendFormat": "{{http_status_code}} {{http_target}} {{http_method}}",
               "range": true,
@@ -368,8 +368,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "http_server_duration_ms_count{http_target=\"api/Inventories/get-inventory-by-book-name/{bookName}\"}",
+              "editorMode": "code",
+              "expr": "http_server_duration_count{http_target=\"api/Inventories/get-inventory-by-book-name/{bookName}\"}",
               "hide": false,
               "legendFormat": "{{http_status_code}} {{http_target}} {{http_method}}",
               "range": true,
@@ -380,8 +380,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "http_server_duration_ms_count{http_target=\"api/Inventories/{bookId:int}\"}",
+              "editorMode": "code",
+              "expr": "http_server_duration_count{http_target=\"api/Inventories/{bookId:int}\"}",
               "hide": false,
               "legendFormat": "{{http_status_code}} {{http_target}} {{http_method}}",
               "range": true,
@@ -422,7 +422,7 @@
             "h": 6,
             "w": 22,
             "x": 0,
-            "y": 20
+            "y": 31
           },
           "id": 13,
           "options": {
@@ -446,8 +446,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "http_server_duration_ms_count{http_target=\"api/Orders/{id:int}\"}",
+              "editorMode": "code",
+              "expr": "http_server_duration_count{http_target=\"api/Orders/{id:int}\"}",
               "hide": false,
               "legendFormat": "{{http_status_code}} {{http_target}} {{http_method}}",
               "range": true,
@@ -459,7 +459,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "http_server_duration_ms_count{http_target=\"api/Orders\"}",
+              "expr": "http_server_duration_count{http_target=\"api/Orders\"}",
               "hide": false,
               "legendFormat": "{{http_status_code}} {{http_target}} {{http_method}}",
               "range": true,
@@ -482,13 +482,13 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Http Requests",
   "uid": "XIbK6xn4z",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }

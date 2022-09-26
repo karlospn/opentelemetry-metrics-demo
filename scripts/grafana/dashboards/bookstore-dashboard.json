@@ -88,8 +88,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "code",
-              "expr": "sum(total_orders_Orders)",
+              "editorMode": "builder",
+              "expr": "sum(total_orders)",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -152,7 +152,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "builder",
-              "expr": "total_orders_Orders",
+              "expr": "total_orders",
               "legendFormat": "{{City}}",
               "range": true,
               "refId": "A"
@@ -276,7 +276,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "orders_price_Euros_sum / orders_price_Euros_count",
+              "expr": "orders_price_sum / orders_price_count",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -336,7 +336,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "orders_number_of_books_Books_sum / orders_number_of_books_Books_count",
+              "expr": "orders_number_of_books_sum / orders_number_of_books_count",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -399,8 +399,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "orders_number_of_books_Books_bucket",
+              "editorMode": "code",
+              "expr": "orders_number_of_books_bucket",
               "format": "heatmap",
               "legendFormat": "{{le}}",
               "range": true,
@@ -464,8 +464,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "orders_price_Euros_bucket",
+              "editorMode": "code",
+              "expr": "orders_price_bucket",
               "format": "heatmap",
               "legendFormat": "{{le}}",
               "range": true,
@@ -599,8 +599,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "books_added_Book",
+              "editorMode": "code",
+              "expr": "books_added",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -659,8 +659,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "books_deleted_Book",
+              "editorMode": "code",
+              "expr": "books_deleted",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -719,8 +719,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "books_updated_Book",
+              "editorMode": "code",
+              "expr": "books_updated",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -853,8 +853,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "categories_added_Category",
+              "editorMode": "code",
+              "expr": "categories_added",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -913,8 +913,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "categories_updated_Category",
+              "editorMode": "code",
+              "expr": "categories_updated",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -973,8 +973,8 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
-              "editorMode": "builder",
-              "expr": "categories_deleted_Category",
+              "editorMode": "code",
+              "expr": "categories_deleted",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -1003,6 +1003,6 @@
   "timezone": "",
   "title": "BookStore dashboard",
   "uid": "tJ5Z5XGVz",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }

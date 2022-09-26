@@ -33,11 +33,12 @@ builder.Services.AddOpenTelemetryMetrics(opts => opts
     .AddView(
         instrumentName: "orders-number-of-books",
         new ExplicitBucketHistogramConfiguration { Boundaries = new double[] { 1, 2, 5 } })
-    .AddPrometheusExporter());
+    .AddOtlpExporter(opts =>
+    {
+        opts.Endpoint = new Uri(builder.Configuration["Otlp:Endpoint"]);
+    }));
 
 var app = builder.Build();
-
-app.UseOpenTelemetryPrometheusScrapingEndpoint();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseAuthorization();

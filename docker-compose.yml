@@ -35,6 +35,19 @@ services:
       - 3000:3000
     networks:
       - metrics
+  
+  otel-collector:
+    image: otel/opentelemetry-collector:0.60.0
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./scripts/otel-collector/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "8888:8888" 
+      - "8889:8889" 
+      - "13133:13133"
+      - "4317:4317"
+    networks:
+      - metrics
 
   app:
     build:
@@ -42,9 +55,11 @@ services:
       dockerfile: ./src/BookStore.WebApi/Dockerfile
     depends_on:
       - mssql
+      - otel-collector
     ports:
       - 5001:8080
     environment:
       ConnectionStrings__DbConnection: Server=mssql;Database=BookStore;User Id=SA;Password=P@ssw0rd?
+      Otlp__Endpoint: http://otel-collector:4317
     networks:
       - metrics

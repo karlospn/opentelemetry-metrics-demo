@@ -120,8 +120,8 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "builder",
-          "expr": "process_runtime_dotnet_gc_allocations_size_bytes",
+          "editorMode": "code",
+          "expr": "process_runtime_dotnet_gc_allocations_size",
           "legendFormat": "{{__name__}}",
           "range": true,
           "refId": "A"
@@ -209,8 +209,8 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "builder",
-          "expr": "process_runtime_dotnet_gc_committed_memory_size_bytes",
+          "editorMode": "code",
+          "expr": "process_runtime_dotnet_gc_committed_memory_size",
           "legendFormat": "{{__name__}}",
           "range": true,
           "refId": "A"
@@ -298,8 +298,8 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "builder",
-          "expr": "process_runtime_dotnet_gc_heap_size_bytes",
+          "editorMode": "code",
+          "expr": "process_runtime_dotnet_gc_heap_size",
           "legendFormat": "{{generation}}",
           "range": true,
           "refId": "A"
@@ -390,7 +390,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "expr": "process_runtime_dotnet_gc_collections_count",
           "legendFormat": "{{generation}}",
           "range": true,
@@ -759,8 +759,8 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "builder",
-          "expr": "process_runtime_dotnet_jit_compilation_time_ns",
+          "editorMode": "code",
+          "expr": "process_runtime_dotnet_jit_compilation_time",
           "interval": "",
           "legendFormat": "{{__name__}}",
           "range": true,
@@ -850,8 +850,8 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "builder",
-          "expr": "process_runtime_dotnet_jit_il_compiled_size_bytes",
+          "editorMode": "code",
+          "expr": "process_runtime_dotnet_jit_il_compiled_size",
           "legendFormat": "{{__name__}}",
           "range": true,
           "refId": "A"
@@ -1190,7 +1190,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
