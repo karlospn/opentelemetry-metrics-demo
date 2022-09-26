@@ -8,8 +8,8 @@ The repository contains the following applications.
 
 ![application-diagram](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/main/docs/app-otel-metrics-diagram.png)
 
-- The BookStore WebAPI uses the OpenTelemetry Prometheus exporter package (``OpenTelemetry.Exporter.Prometheus.AspNetCore``) which creates a ``/metrics`` endpoint for Prometheus to scrape.
-- The Prometheus server obtains the metrics from the API
+- The BookStore WebAPI uses the OpenTelemetry OTLP exporter package (``OpenTelemetry.Exporter.OpenTelemetryProtocol``) to send the metric data to the OpenTelemetry Collector.
+- The Prometheus server obtains the metric data from the OpenTelemetry Collector.
 - The Grafana server comes preconfigured with a few dashboards to visualize the OpenTelemetry metrics emitted by the BookStore WebApi.
 
 # **Application**
@@ -114,11 +114,12 @@ The app uses the following package versions:
 <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc9.6" />
 <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc9.6" />
 <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.0.0" />
-<PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.4.0-alpha.2" />
+<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.3.1" />
 ```
 
 # **External Dependencies**
 
+- OpenTelemetry Collector
 - Prometheus
 - MSSQL Server
 - Grafana
@@ -128,8 +129,9 @@ The app uses the following package versions:
 The repository contains a ``docker-compose`` that starts up the BookStore app and also the external dependencies.
 The external dependencies (Prometheus, MSSQL Server and Grafana) are already preconfigured so you don't need to do any extra setup. 
 
+- The OpenTelemetry Collector is already configured to export the metrics to Prometheus.
 - The MSSQL Server comes with the BookStore database schema configured.
-- The Prometheus is already configured to scrape the BookStore API ``/metrics`` endpoint.
+- The Prometheus is already configured to receive the metric data from the OpenTelemetry Collector.
 - The Grafana has the Prometheus connector already setup, it also contains 3 custom dashboards to visualize the OpenTelemetry metrics emitted by the BookStore app.
 
 Just run ``docker-compose up`` and your good to go!
