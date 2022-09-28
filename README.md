@@ -127,7 +127,7 @@ The app uses the following package versions:
 # **How to run the app**
 
 The repository contains a ``docker-compose`` that starts up the BookStore app and also the external dependencies.
-The external dependencies (Prometheus, MSSQL Server and Grafana) are already preconfigured so you don't need to do any extra setup. 
+The external dependencies (OpenTelemetry Collector, Prometheus, MSSQL Server and Grafana) are already preconfigured so you don't need to do any extra setup. 
 
 - The OpenTelemetry Collector is already configured to export the metrics to Prometheus.
 - The MSSQL Server comes with the BookStore database schema configured.
@@ -140,7 +140,7 @@ Just run ``docker-compose up`` and your good to go!
 
 > _It requires to have **cURL** installed on your local machine._
 
-This repository contains a ``seed-data.sh`` Shell script that will invoke a few operations of the BookStore API via cURL.
+This repository contains a ``seed-data.sh`` Shell script that will invoke some endpoints of the BookStore API via cURL.
 
 The ``seed-data.sh`` script runs the following operations:
 - Adds 8 book categories.
