@@ -385,7 +385,7 @@ sleep 5
 # Delete fake Inventory #
 #########################
  
-curl -X 'DELETE' "${api_uri}/api/Inventories/33" -H 'accept: */*'
+curl -k -X 'DELETE' "${api_uri}/api/Inventories/33" -H 'accept: */*'
 echo
 sleep 5
 
