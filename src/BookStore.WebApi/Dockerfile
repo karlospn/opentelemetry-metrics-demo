@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim AS build-env
 WORKDIR /app
 
 # Copy everything
@@ -25,7 +25,7 @@ RUN dotnet publish "./src/BookStore.WebApi/BookStore.WebApi.csproj" \
 	--runtime linux-x64
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/runtime-deps:6.0-bullseye-slim
+FROM mcr.microsoft.com/dotnet/runtime-deps:7.0-bullseye-slim
 
 # Copy artifact
 WORKDIR /app
