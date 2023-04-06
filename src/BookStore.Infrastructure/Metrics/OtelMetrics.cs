@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.Metrics;
-using System.Threading;
 
 namespace BookStore.Infrastructure.Metrics
 {
