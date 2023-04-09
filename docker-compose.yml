@@ -37,7 +37,7 @@ services:
       - metrics
   
   otel-collector:
-    image: otel/opentelemetry-collector:0.60.0
+    image: otel/opentelemetry-collector:0.73.0
     command: ["--config=/etc/otel-collector-config.yaml"]
     volumes:
       - ./scripts/otel-collector/otel-collector-config.yaml:/etc/otel-collector-config.yaml
@@ -59,7 +59,7 @@ services:
     ports:
       - 5001:8080
     environment:
-      ConnectionStrings__DbConnection: Server=mssql;Database=BookStore;User Id=SA;Password=P@ssw0rd?
+      ConnectionStrings__DbConnection: Server=mssql;Database=BookStore;User Id=SA;Password=P@ssw0rd?;Encrypt=False
       Otlp__Endpoint: http://otel-collector:4317
     networks:
       - metrics

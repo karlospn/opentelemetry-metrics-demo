@@ -138,37 +138,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "mode": "thresholds"
           },
           "mappings": [],
           "thresholds": {
@@ -192,17 +162,20 @@
       },
       "id": 12,
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "textMode": "auto"
       },
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -210,14 +183,14 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "process_runtime_dotnet_gc_committed_memory_size",
+          "expr": "process_memory_usage",
           "legendFormat": "{{__name__}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "GC Commited Memory Size",
-      "type": "timeseries"
+      "title": "Memory Usage",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -269,7 +242,7 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -292,6 +265,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -299,13 +273,14 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "process_runtime_dotnet_gc_heap_size",
-          "legendFormat": "{{generation}}",
+          "expr": "100 * (delta(process_cpu_time{state='user'}[$__rate_interval])/ignoring(state)(process_cpu_count* 30))",
+          "hide": false,
+          "legendFormat": "cpu_utilization",
           "range": true,
-          "refId": "A"
+          "refId": "B"
         }
       ],
-      "title": "GC Heap Size Bytes",
+      "title": "CPU Utilization",
       "type": "timeseries"
     },
     {
@@ -484,7 +459,7 @@
           },
           "editorMode": "builder",
           "expr": "process_runtime_dotnet_thread_pool_completed_items_count",
-          "legendFormat": "__auto",
+          "legendFormat": "{{__name__}}",
           "range": true,
           "refId": "A"
         }
@@ -666,7 +641,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "expr": "process_runtime_dotnet_thread_pool_queue_length",
           "legendFormat": "{{__name__}}",
           "range": true,
@@ -908,7 +883,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -973,7 +948,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1034,7 +1009,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1099,14 +1074,14 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "expr": "process_runtime_dotnet_gc_collections_count",
           "legendFormat": "{{generation}}",
           "range": true,
@@ -1164,7 +1139,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1182,21 +1157,22 @@
       "type": "stat"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 37,
+  "refresh": "5s",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": ".NET Performance Counters",
   "uid": "qL76cuMVk",
-  "version": 2,
+  "version": 4,
   "weekStart": ""
 }

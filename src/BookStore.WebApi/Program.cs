@@ -1,4 +1,5 @@
 using BookStore.Infrastructure.Metrics;
+using BookStore.WebApi.Middleware;
 using Microsoft.OpenApi.Models;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -22,10 +23,11 @@ builder.Services.RegisterInfrastureDependencies(builder.Configuration);
 
 var meters = new OtelMetrics();
 
-builder.Services.AddOpenTelemetryMetrics(opts => opts
+builder.Services.AddOpenTelemetry().WithMetrics(opts => opts
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("BookStore.WebApi"))
     .AddMeter(meters.MetricName)
     .AddAspNetCoreInstrumentation()
+    .AddProcessInstrumentation()
     .AddRuntimeInstrumentation()
     .AddView(
         instrumentName: "orders-price",
@@ -33,12 +35,19 @@ builder.Services.AddOpenTelemetryMetrics(opts => opts
     .AddView(
         instrumentName: "orders-number-of-books",
         new ExplicitBucketHistogramConfiguration { Boundaries = new double[] { 1, 2, 5 } })
-    .AddOtlpExporter(opts =>
+    .AddOtlpExporter(options  =>
     {
-        opts.Endpoint = new Uri(builder.Configuration["Otlp:Endpoint"]);
+        options.Endpoint = new Uri(builder.Configuration["Otlp:Endpoint"] 
+                                   ?? throw new InvalidOperationException());
     }));
 
 var app = builder.Build();
+
+// Add simulated latency to improve http requests avg. time dashboard
+app.UseSimulatedLatency(
+    min: TimeSpan.FromMilliseconds(500),
+    max: TimeSpan.FromMilliseconds(1000)
+);
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseAuthorization();

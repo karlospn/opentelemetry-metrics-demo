@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.Metrics;
-using System.Threading;
 
 namespace BookStore.Infrastructure.Metrics
 {
@@ -10,8 +9,7 @@ namespace BookStore.Infrastructure.Metrics
         private  Counter<int> BooksAddedCounter { get; }
         private  Counter<int> BooksDeletedCounter { get; }
         private  Counter<int> BooksUpdatedCounter { get; }
-        private  ObservableGauge<int> TotalBooksGauge { get; }
-        private int _totalBooks = 0;
+        private  UpDownCounter<int> TotalBooksUpDownCounter { get; }
 
         //Categories meters
         private Counter<int> CategoriesAddedCounter { get; }
@@ -38,7 +36,7 @@ namespace BookStore.Infrastructure.Metrics
             BooksAddedCounter = meter.CreateCounter<int>("books-added", "Book");
             BooksDeletedCounter = meter.CreateCounter<int>("books-deleted", "Book");
             BooksUpdatedCounter = meter.CreateCounter<int>("books-updated", "Book");
-            TotalBooksGauge = meter.CreateObservableGauge<int>("total-books", () => new[] { new Measurement<int>(_totalBooks) });
+            TotalBooksUpDownCounter = meter.CreateUpDownCounter<int>("total-books", "Book");
             
             CategoriesAddedCounter = meter.CreateCounter<int>("categories-added", "Category");
             CategoriesDeletedCounter = meter.CreateCounter<int>("categories-deleted", "Category");
@@ -56,8 +54,8 @@ namespace BookStore.Infrastructure.Metrics
         public void AddBook() => BooksAddedCounter.Add(1);
         public void DeleteBook() => BooksDeletedCounter.Add(1);
         public void UpdateBook() => BooksUpdatedCounter.Add(1);
-        public void IncreaseTotalBooks() => _totalBooks++;
-        public void DecreaseTotalBooks() => _totalBooks--;
+        public void IncreaseTotalBooks() => TotalBooksUpDownCounter.Add(1);
+        public void DecreaseTotalBooks() => TotalBooksUpDownCounter.Add(-1);
 
         //Categories meters
         public void AddCategory() => CategoriesAddedCounter.Add(1);
