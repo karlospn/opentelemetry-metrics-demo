@@ -182,3 +182,16 @@ If you open those dashboards after running the ``seed-data.sh`` script from the 
 ## Http Requests dashboard
 
 ![http-requests-dashboard](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/main/docs/http-requests-dashboard.png)
+
+# **Changelog**
+
+### **04/09/2023**
+- Update application to .NET 7.
+- Add a new middleware into the app that simulates latency.
+- Update OpenTelemetry packages to the latest version.
+- Fix breaking changes on the app due to the OpenTelemetry packages version upgrade.
+- Fix a few broken panels on the Grafana dashboard due to the OpenTelemetry packages version upgrade.
+- Install and configure 'OpenTelemetry.Instrumentation.Process' package to import CPU and memory metrics.
+- Replace the 'TotalBooksGauge' metric with the 'TotalBooksUpDownCounter' metric.
+Update Grafana, Prometheus and OTEL Collector images used on the docker-compose to the newest versions.
+
