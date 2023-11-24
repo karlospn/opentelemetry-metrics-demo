@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -11,17 +10,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
+    public abstract class Repository<TEntity>(BookStoreDbContext db) : IRepository<TEntity>
+        where TEntity : Entity
     {
-        protected readonly BookStoreDbContext Db;
+        protected readonly BookStoreDbContext Db = db;
         
-        protected readonly DbSet<TEntity> DbSet;
-
-        protected Repository(BookStoreDbContext db)
-        {
-            Db = db;
-            DbSet = db.Set<TEntity>();
-        }
+        protected readonly DbSet<TEntity> DbSet = db.Set<TEntity>();
 
         public virtual async Task Add(TEntity entity)
         {

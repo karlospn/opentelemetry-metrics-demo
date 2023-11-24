@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build-env
 WORKDIR /app
 
 # Copy everything
@@ -25,7 +25,7 @@ RUN dotnet publish "./src/BookStore.WebApi/BookStore.WebApi.csproj" \
 	--runtime linux-x64
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/runtime-deps:7.0-bullseye-slim
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0.0-jammy-chiseled-extra
 
 # Copy artifact
 WORKDIR /app
@@ -33,6 +33,8 @@ COPY --from=build-env /app/publish .
 
 # Starts on port 8080
 ENV ASPNETCORE_URLS=http://+:8080
+
+
 
 # Set Entrypoint
 ENTRYPOINT ["./BookStore.WebApi"]

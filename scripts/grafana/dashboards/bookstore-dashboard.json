@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -53,7 +53,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -79,20 +80,25 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
+              "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "sum(total_orders)",
+              "expr": "sum(orders_Orders_total)",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
               "legendFormat": "__auto",
               "range": true,
-              "refId": "A"
+              "refId": "A",
+              "useBackend": false
             }
           ],
           "title": "Total Orders Placed",
@@ -151,11 +157,15 @@
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
+              "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "total_orders",
+              "expr": "orders_Orders_total",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
               "legendFormat": "{{City}}",
               "range": true,
-              "refId": "A"
+              "refId": "A",
+              "useBackend": false
             }
           ],
           "title": "Total Orders Placed by City",
@@ -176,7 +186,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -206,20 +217,25 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
+              "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "orders_canceled",
+              "expr": "orders_canceled_total",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
               "legendFormat": "__auto",
               "range": true,
-              "refId": "A"
+              "refId": "A",
+              "useBackend": false
             }
           ],
           "title": "Orders Canceled",
@@ -240,7 +256,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -266,9 +283,10 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -276,7 +294,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "orders_price_sum / orders_price_count",
+              "expr": "orders_price_Euros_sum / orders_price_Euros_count",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -300,7 +318,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -326,9 +345,10 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -336,7 +356,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "orders_number_of_books_sum / orders_number_of_books_count",
+              "expr": "orders_number_of_books_Books_sum / orders_number_of_books_Books_count",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -360,7 +380,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -382,6 +403,7 @@
             "displayMode": "gradient",
             "minVizHeight": 10,
             "minVizWidth": 0,
+            "namePlacement": "auto",
             "orientation": "auto",
             "reduceOptions": {
               "calcs": [
@@ -390,9 +412,10 @@
               "fields": "",
               "values": false
             },
-            "showUnfilled": true
+            "showUnfilled": true,
+            "valueMode": "color"
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -400,7 +423,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "orders_number_of_books_bucket",
+              "expr": "orders_number_of_books_Books_bucket",
               "format": "heatmap",
               "legendFormat": "{{le}}",
               "range": true,
@@ -425,7 +448,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -447,6 +471,7 @@
             "displayMode": "gradient",
             "minVizHeight": 10,
             "minVizWidth": 0,
+            "namePlacement": "auto",
             "orientation": "auto",
             "reduceOptions": {
               "calcs": [
@@ -455,9 +480,10 @@
               "fields": "",
               "values": false
             },
-            "showUnfilled": true
+            "showUnfilled": true,
+            "valueMode": "color"
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -465,7 +491,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "orders_price_bucket",
+              "expr": "orders_price_Euros_bucket",
               "format": "heatmap",
               "legendFormat": "{{le}}",
               "range": true,
@@ -504,7 +530,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -530,20 +557,25 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
                 "uid": "PBFA97CFB590B2093"
               },
+              "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "total_books",
+              "expr": "total_books_Book",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
               "legendFormat": "__auto",
               "range": true,
-              "refId": "A"
+              "refId": "A",
+              "useBackend": false
             }
           ],
           "title": "Total Number of Books Available in the Store",
@@ -564,7 +596,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -590,9 +623,10 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -600,7 +634,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "books_added",
+              "expr": "books_added_Book_total",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -624,7 +658,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -650,9 +685,10 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -660,7 +696,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "books_deleted",
+              "expr": "books_deleted_Book_total",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -684,7 +720,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -710,9 +747,10 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -720,7 +758,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "books_updated",
+              "expr": "books_updated_Book_total",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -758,7 +796,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -784,9 +823,10 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -818,7 +858,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -844,9 +885,10 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -854,7 +896,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "categories_added",
+              "expr": "categories_added_Category_total",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -878,7 +920,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -904,9 +947,10 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -914,7 +958,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "categories_updated",
+              "expr": "categories_updated_Category_total",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -938,7 +982,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -964,9 +1009,10 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "auto",
+            "wideLayout": true
           },
-          "pluginVersion": "9.1.3",
+          "pluginVersion": "10.2.2",
           "targets": [
             {
               "datasource": {
@@ -974,7 +1020,7 @@
                 "uid": "PBFA97CFB590B2093"
               },
               "editorMode": "code",
-              "expr": "categories_deleted",
+              "expr": "categories_deleted_Category_total",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
@@ -989,8 +1035,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 37,
-  "style": "dark",
+  "schemaVersion": 38,
   "tags": [],
   "templating": {
     "list": []
@@ -1003,6 +1048,6 @@
   "timezone": "",
   "title": "BookStore dashboard",
   "uid": "tJ5Z5XGVz",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }

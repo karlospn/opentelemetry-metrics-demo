@@ -9,13 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public class InventoryRepository : Repository<Inventory>, IInventoryRepository
+    public class InventoryRepository(BookStoreDbContext db) : Repository<Inventory>(db), IInventoryRepository
     {
-        public InventoryRepository(BookStoreDbContext db) 
-            : base(db)
-        {
-        }
-
         public async Task<IEnumerable<Inventory>> SearchInventoryForBook(string bookName)
         {
             return await Db.Inventories.AsNoTracking()

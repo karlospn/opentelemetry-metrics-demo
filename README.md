@@ -14,7 +14,7 @@ The repository contains the following applications.
 
 # **Application**
 
-The application is a BookStore API built using **.NET 7**. It allows us to do the following actions:
+The application is a BookStore API built using **.NET 8**. It allows us to do the following actions:
 
 - Get, add, update and delete book categories.
 - Get, add, update and delete books.
@@ -185,13 +185,26 @@ If you open those dashboards after running the ``seed-data.sh`` script from the 
 
 # **Changelog**
 
+### **11/24/2023**
+- Update application to .NET 8.
+- The application now uses a Ubuntu Chiseled base image instead of a Debian one.
+- Rename ``OtelMetrics`` class to ``BookStoreMetrics``.
+- The ``BookStoreMetrics`` class uses the new ``IMeterFactory`` to create the ``Meter``.
+- Move Meter name from being a hardcode string to configuration.
+- Added some new C# 12 features like primary constructors and collection expressions.
+- Update OpenTelemetry packages to the latest version.
+- Update Grafana, Prometheus and OTEL Collector images used on the docker-compose to the most recent versions.
+- Fix a few broken panels on the Grafana dashboard due to the upgrade.
+- Deleted custom dashboard that use ASP.NET core metrics and replaced by the 2 new ones build by the .NET team itself. They can be found in the Grafana Store. Here's the [link](https://github.com/dotnet/aspire/tree/main/src/Grafana)
+
 ### **04/09/2023**
 - Update application to .NET 7.
 - Add a new middleware into the app that simulates latency.
 - Update OpenTelemetry packages to the latest version.
 - Fix breaking changes on the app due to the OpenTelemetry packages version upgrade.
 - Fix a few broken panels on the Grafana dashboard due to the OpenTelemetry packages version upgrade.
-- Install and configure 'OpenTelemetry.Instrumentation.Process' package to import CPU and memory metrics.
-- Replace the 'TotalBooksGauge' metric with the 'TotalBooksUpDownCounter' metric.
-Update Grafana, Prometheus and OTEL Collector images used on the docker-compose to the newest versions.
+- Install and configure ``OpenTelemetry.Instrumentation.Process`` package to import CPU and memory metrics.
+- Replace the ``TotalBooksGauge`` metric with the ``TotalBooksUpDownCounter`` metric.
+- Update Grafana, Prometheus and OTEL Collector images used on the docker-compose to the newest versions.
+
 

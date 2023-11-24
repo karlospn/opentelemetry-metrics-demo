@@ -10,16 +10,9 @@ using BookStore.Infrastructure.Metrics;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public class OrderRepository : Repository<Order>, IOrderRepository
+    public class OrderRepository(BookStoreDbContext context, BookStoreMetrics meters) : Repository<Order>(context),
+        IOrderRepository
     {
-        private readonly OtelMetrics _meters;
-
-        public OrderRepository(BookStoreDbContext context, OtelMetrics meters) 
-            : base(context)
-        {
-            _meters = meters;
-        }
-
         public override async Task<Order> GetById(int id)
         {
             return await Db.Orders
@@ -39,16 +32,16 @@ namespace BookStore.Infrastructure.Repositories
             DbSet.Add(entity);
             await base.SaveChanges();
 
-            _meters.RecordOrderTotalPrice(entity.TotalAmount);
-            _meters.RecordNumberOfBooks(entity.Books.Count);
-            _meters.IncreaseTotalOrders(entity.City);
+            meters.RecordOrderTotalPrice(entity.TotalAmount);
+            meters.RecordNumberOfBooks(entity.Books.Count);
+            meters.IncreaseTotalOrders(entity.City);
         }
 
         public override async Task Update(Order entity)
         {
             await base.Update(entity);
 
-            _meters.IncreaseOrdersCanceled();
+            meters.IncreaseOrdersCanceled();
         }
 
         public async Task<List<Order>> GetOrdersByBookId(int bookId)

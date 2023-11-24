@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -52,6 +52,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -65,6 +66,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -121,7 +123,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "process_runtime_dotnet_gc_allocations_size",
+          "expr": "process_runtime_dotnet_gc_allocations_size_bytes_total",
           "legendFormat": "{{__name__}}",
           "range": true,
           "refId": "A"
@@ -173,9 +175,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -183,7 +186,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "process_memory_usage",
+          "expr": "process_memory_usage_bytes",
           "legendFormat": "{{__name__}}",
           "range": true,
           "refId": "A"
@@ -203,6 +206,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -216,6 +220,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -273,7 +278,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "100 * (delta(process_cpu_time{state='user'}[$__rate_interval])/ignoring(state)(process_cpu_count* 30))",
+          "expr": "100 * (delta(process_cpu_time_seconds_total{state='user'}[$__rate_interval])/ignoring(state)(process_cpu_count* 30))",
           "hide": false,
           "legendFormat": "cpu_utilization",
           "range": true,
@@ -294,6 +299,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -307,6 +313,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -366,7 +373,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "process_runtime_dotnet_gc_collections_count",
+          "expr": "process_runtime_dotnet_gc_collections_count_total",
           "legendFormat": "{{generation}}",
           "range": true,
           "refId": "A"
@@ -386,6 +393,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -399,6 +407,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -457,11 +466,15 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "process_runtime_dotnet_thread_pool_completed_items_count",
+          "expr": "process_runtime_dotnet_thread_pool_completed_items_count_total",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "TheadPool Completed Items Count",
@@ -478,6 +491,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -491,6 +505,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -570,6 +585,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -583,6 +599,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -662,6 +679,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -675,6 +693,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -735,7 +754,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "process_runtime_dotnet_jit_compilation_time",
+          "expr": "process_runtime_dotnet_jit_compilation_time_nanoseconds_total",
           "interval": "",
           "legendFormat": "{{__name__}}",
           "range": true,
@@ -756,6 +775,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -769,6 +789,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -826,7 +847,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "process_runtime_dotnet_jit_il_compiled_size",
+          "expr": "process_runtime_dotnet_jit_il_compiled_size_bytes_total",
           "legendFormat": "{{__name__}}",
           "range": true,
           "refId": "A"
@@ -881,9 +902,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -946,20 +968,25 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "process_runtime_dotnet_jit_methods_compiled_count",
+          "expr": "process_runtime_dotnet_jit_methods_compiled_count_total",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "JIT Methods Compiled",
@@ -1007,9 +1034,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -1072,9 +1100,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -1082,7 +1111,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "process_runtime_dotnet_gc_collections_count",
+          "expr": "process_runtime_dotnet_gc_collections_count_total",
           "legendFormat": "{{generation}}",
           "range": true,
           "refId": "A"
@@ -1137,20 +1166,25 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.4.3",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "process_runtime_dotnet_exceptions_count",
+          "expr": "process_runtime_dotnet_exceptions_count_total",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": ".NET Exceptions",
@@ -1160,19 +1194,18 @@
   "refresh": "5s",
   "revision": 1,
   "schemaVersion": 38,
-  "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": ".NET Performance Counters",
   "uid": "qL76cuMVk",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }
