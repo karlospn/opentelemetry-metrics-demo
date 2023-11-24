@@ -187,9 +187,9 @@ The purpose behind this script is to generate a decent amount of metrics that la
 
 # **Output**
 
-If you open Grafana you're going to see those 3 dashboards.
+If you open Grafana, you're going to see those 3 dashboards.
 
-![grafana-dashboards](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/main/docs/grafana-dashboards.png)
+![grafana-dashboards](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/feature/net8/docs/grafana-dashboards.png)
 
 If you open those dashboards after running the ``seed-data.sh`` script from the previous section, you're going to see something like this.
 
