@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.WebApi", "src\BookStore.WebApi\BookStore.WebApi.csproj", "{05647CBB-2581-40D4-837F-98C3180CA2C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Metrics.UnitTest", "test\BookStore.Metrics.UnitTest\BookStore.Metrics.UnitTest.csproj", "{FFB7D84D-DE85-439C-99F9-9A4F903D758A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStoreMetrics.UnitTest", "test\BookStore.Metrics.UnitTest\BookStoreMetrics.UnitTest.csproj", "{FFB7D84D-DE85-439C-99F9-9A4F903D758A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BFA3675C-768A-42C2-9AEB-5989D5D16B7A}"
 EndProject

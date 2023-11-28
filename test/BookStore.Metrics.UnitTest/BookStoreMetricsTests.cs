@@ -1,10 +1,9 @@
-using BookStore.Infrastructure.Metrics;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.Metrics.Testing;
 using System.Diagnostics.Metrics;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.Metrics.Testing;
 
-namespace BookStore.Metrics.UnitTest
+namespace BookStoreMetrics.UnitTest
 {
     public class BookStoreMetricsTests
     {
@@ -14,7 +13,7 @@ namespace BookStore.Metrics.UnitTest
             var config = CreateIConfiguration();
             serviceCollection.AddMetrics();
             serviceCollection.AddSingleton(config);
-            serviceCollection.AddSingleton<BookStoreMetrics>();
+            serviceCollection.AddSingleton<BookStore.Infrastructure.Metrics.BookStoreMetrics>();
             return serviceCollection.BuildServiceProvider();
         }
 
@@ -34,7 +33,7 @@ namespace BookStore.Metrics.UnitTest
         {
             //Arrange
             var services = CreateServiceProvider();
-            var metrics = services.GetRequiredService<BookStoreMetrics>();
+            var metrics = services.GetRequiredService<BookStore.Infrastructure.Metrics.BookStoreMetrics>();
             var meterFactory = services.GetRequiredService<IMeterFactory>();
             var collector = new MetricCollector<int>(meterFactory, "BookStore", "orders-number-of-books");
 
@@ -51,7 +50,7 @@ namespace BookStore.Metrics.UnitTest
         {
             //Arrange
             var services = CreateServiceProvider();
-            var metrics = services.GetRequiredService<BookStoreMetrics>();
+            var metrics = services.GetRequiredService<BookStore.Infrastructure.Metrics.BookStoreMetrics>();
             var meterFactory = services.GetRequiredService<IMeterFactory>();
             var collector = new MetricCollector<int>(meterFactory, "BookStore", "total-books");
 
@@ -75,7 +74,7 @@ namespace BookStore.Metrics.UnitTest
         {
             //Arrange
             var services = CreateServiceProvider();
-            var metrics = services.GetRequiredService<BookStoreMetrics>();
+            var metrics = services.GetRequiredService<BookStore.Infrastructure.Metrics.BookStoreMetrics>();
             var meterFactory = services.GetRequiredService<IMeterFactory>();
             var collector = new MetricCollector<int>(meterFactory, "BookStore", "total-orders");
 
@@ -95,7 +94,7 @@ namespace BookStore.Metrics.UnitTest
         {
             //Arrange
             var services = CreateServiceProvider();
-            var metrics = services.GetRequiredService<BookStoreMetrics>();
+            var metrics = services.GetRequiredService<BookStore.Infrastructure.Metrics.BookStoreMetrics>();
             var meterFactory = services.GetRequiredService<IMeterFactory>();
             var collector = new MetricCollector<int>(meterFactory, "BookStore", "total-categories");
 
