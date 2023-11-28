@@ -49,7 +49,7 @@ The metrics generated are the following ones:
 
 ### **How to unit test the BookingStore Custom metrics**
 
-Its possible to test any custom metrics you create using the ``Microsoft.Extensions.Diagnostics.Testing`` library and the ``MetricCollector``.
+It is possible to test any custom metrics you create using the ``Microsoft.Extensions.Diagnostics.Testing`` NuGet package and the ``MetricCollector`` implementation.
 
 The ``MetricCollector`` class makes it easy to record the measurements from specific instruments and assert the values were correct.
 
