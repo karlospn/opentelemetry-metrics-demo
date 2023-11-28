@@ -203,7 +203,7 @@ If you open those dashboards after running the ``seed-data.sh`` script from the 
 
 ## **.NET built-in metrics dashboard**
 
-This pair of dashboards were not set up by me; it was done by the .NET team themselves. I simply downloaded them and included them in this repository so that when you run ``docker-compose up``, they are already included in the example, and you don't need to import them. 
+This pair of dashboards were not built by me; they were built by the .NET team themselves. I simply downloaded them and included them in this repository so that when you run ``docker-compose up``, they are already included in the example, and you don't need to import them. 
 
 If you want to play around with them on your own, the link to download them is as follows: [link](https://github.com/dotnet/aspire/tree/main/src/Grafana)
 
@@ -221,17 +221,17 @@ If you want to play around with them on your own, the link to download them is a
 
 # **Changelog**
 
-### **11/24/2023**
+### **11/29/2023**
 - Update application to .NET 8.
-- The application now uses a Ubuntu Chiseled base image instead of a Debian one.
-- Rename ``OtelMetrics`` class to ``BookStoreMetrics``.
-- The ``BookStoreMetrics`` class uses the new ``IMeterFactory`` to create the ``Meter``.
-- Move Meter name from being a hardcode string to configuration.
-- Added some new C# 12 features like primary constructors and collection expressions.
+- The application now uses an Ubuntu Chiseled base image instead of a Debian one.
+- Rename the ``OtelMetrics`` class to ``BookStoreMetrics``.
+- The ``BookStoreMetrics`` class uses the new ``IMeterFactory`` interface to create the ``Meter``.
+- Move the ``Meter`` name from being a hardcoded string to configuration.
+- Add some new C# 12 features like primary constructors and collection expressions.
 - Update OpenTelemetry packages to the latest version.
 - Update Grafana, Prometheus and OTEL Collector images used on the docker-compose to the most recent versions.
-- Fix a few broken panels on the Grafana dashboard due to the upgrade.
-- Deleted custom dashboard that use ASP.NET core metrics and replaced by the 2 new ones build by the .NET team itself. They can be found in the Grafana Store. Here's the [link](https://github.com/dotnet/aspire/tree/main/src/Grafana)
+- Fix a few broken panels on the Grafana dashboards due to the upgrade.
+- Deleted the custom dashboard that uses ASP.NET core metrics and replaced it with the two new ones built by the .NET team itself. They can be found in the Grafana Store. Here's the [link](https://github.com/dotnet/aspire/tree/main/src/Grafana)
 
 ### **04/09/2023**
 - Update application to .NET 7.
