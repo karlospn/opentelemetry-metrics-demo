@@ -229,6 +229,7 @@ If you want to play around with them on your own, the link to download them is a
 - Move the ``Meter`` name from being a hardcoded string to configuration.
 - Add some new C# 12 features like primary constructors and collection expressions.
 - Update OpenTelemetry packages to the latest version.
+- Create a Unit Test project to demonstrate how can we test the ``Instruments`` using the ``Microsoft.Extensions.Diagnostics.Testing`` library and the ``MetricCollector``.
 - Update Grafana, Prometheus and OTEL Collector images used on the docker-compose to the most recent versions.
 - Fix a few broken panels on the Grafana dashboards due to the upgrade.
 - Deleted the custom dashboard that uses ASP.NET core metrics and replaced it with the two new ones built by the .NET team itself. They can be found in the Grafana Store. Here's the [link](https://github.com/dotnet/aspire/tree/main/src/Grafana)
