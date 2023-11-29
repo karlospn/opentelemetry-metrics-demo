@@ -9,17 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public class BookRepository : Repository<Book>, IBookRepository
+    public class BookRepository(BookStoreDbContext context,
+        BookStoreMetrics meters) : Repository<Book>(context), IBookRepository
     {
-        private readonly OtelMetrics _meters;
-
-        public BookRepository(
-            BookStoreDbContext context, 
-            OtelMetrics meters) : base(context)
-        {
-            _meters = meters;
-        }
-
         public override async Task<List<Book>> GetAll()
         {
             return await Db.Books.Include(b => b.Category)
@@ -54,23 +46,23 @@ namespace BookStore.Infrastructure.Repositories
         {
             await base.Add(entity);
 
-            _meters.AddBook();
-            _meters.IncreaseTotalBooks();
+            meters.AddBook();
+            meters.IncreaseTotalBooks();
         }
 
         public override async Task Update(Book entity)
         {
             await base.Update(entity);
 
-            _meters.UpdateBook();
+            meters.UpdateBook();
         }
 
         public override async Task Remove(Book entity)
         {
             await base.Remove(entity);
 
-            _meters.DeleteBook();
-            _meters.DecreaseTotalBooks();
+            meters.DeleteBook();
+            meters.DecreaseTotalBooks();
         }
     }
 }

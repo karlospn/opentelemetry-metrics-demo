@@ -6,40 +6,29 @@ using BookStore.Domain.Models;
 
 namespace BookStore.Domain.Services
 {
-    public class OrderService: IOrderService
-    {
-        private readonly IOrderRepository _orderRepository;
-        private readonly IBookRepository _bookRepository;
-        private readonly IInventoryRepository _inventoryRepository;
-
-        public OrderService(IOrderRepository orderRepository,
-            IBookRepository bookRepository, 
+    public class OrderService(IOrderRepository orderRepository,
+            IBookRepository bookRepository,
             IInventoryRepository inventoryRepository)
-        {
-            _orderRepository = orderRepository;
-            _bookRepository = bookRepository;
-            _inventoryRepository = inventoryRepository;
-        }
-
-
+        : IOrderService
+    {
         public async Task<IEnumerable<Order>> GetAll()
         {
-            return await _orderRepository.GetAll();
+            return await orderRepository.GetAll();
         }
 
         public async Task<Order> GetById(int id)
         {
-            return await _orderRepository.GetById(id);
+            return await orderRepository.GetById(id);
         }
 
         public async Task<Order> Add(Order order)
         {
             double sum = 0;
-            List<Inventory> inventoryList = new();
+            List<Inventory> inventoryList = [];
 
             for (var i = 0; i < order.Books.Count; i++)
             {
-                var orderingBook = await _bookRepository.GetById(order.Books[i].Id);
+                var orderingBook = await bookRepository.GetById(order.Books[i].Id);
                 if (orderingBook is null)
                     return null;
 
@@ -49,7 +38,7 @@ namespace BookStore.Domain.Services
                 if (!orderingBook.HasCorrectPublishDate())
                     return null;
 
-                var inventory = await _inventoryRepository.GetById(order.Books[i].Id);
+                var inventory = await inventoryRepository.GetById(order.Books[i].Id);
                 if (inventory is null || !inventory.HasInventoryAvailable())
                     return null;
 
@@ -61,12 +50,12 @@ namespace BookStore.Domain.Services
             foreach (var inventoryItem in inventoryList)
             {
                 inventoryItem.DecreaseInventory();
-                await _inventoryRepository.Update(inventoryItem);
+                await inventoryRepository.Update(inventoryItem);
             }
 
             order.SetTotalAmount(sum);
             order.SetNewOrderStatus();
-            await _orderRepository.Add(order);
+            await orderRepository.Add(order);
 
             return order;
         }
@@ -77,13 +66,13 @@ namespace BookStore.Domain.Services
                 return null;
 
             order.SetCancelledStatus();
-            await _orderRepository.Update(order);
+            await orderRepository.Update(order);
 
             foreach (var book in order.Books)
             {
-                var inventory = await _inventoryRepository.GetById(book.Id);
+                var inventory = await inventoryRepository.GetById(book.Id);
                 inventory.IncreaseInventory();
-                await _inventoryRepository.Update(inventory);
+                await inventoryRepository.Update(inventory);
             }
 
             return order;

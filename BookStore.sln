@@ -9,6 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.WebApi", "src\BookStore.WebApi\BookStore.WebApi.csproj", "{05647CBB-2581-40D4-837F-98C3180CA2C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStoreMetrics.UnitTest", "test\BookStoreMetrics.UnitTest\BookStoreMetrics.UnitTest.csproj", "{FFB7D84D-DE85-439C-99F9-9A4F903D758A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BFA3675C-768A-42C2-9AEB-5989D5D16B7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4748F07C-D7C8-45CF-9990-25FF77DD75F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +33,19 @@ Global
 		{05647CBB-2581-40D4-837F-98C3180CA2C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05647CBB-2581-40D4-837F-98C3180CA2C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05647CBB-2581-40D4-837F-98C3180CA2C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFB7D84D-DE85-439C-99F9-9A4F903D758A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB7D84D-DE85-439C-99F9-9A4F903D758A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB7D84D-DE85-439C-99F9-9A4F903D758A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB7D84D-DE85-439C-99F9-9A4F903D758A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84A309D2-F63D-4EF0-8746-C2F648652A00} = {BFA3675C-768A-42C2-9AEB-5989D5D16B7A}
+		{9B3CAEB7-EBE1-45D5-8D42-D81ECF14CC65} = {BFA3675C-768A-42C2-9AEB-5989D5D16B7A}
+		{05647CBB-2581-40D4-837F-98C3180CA2C4} = {BFA3675C-768A-42C2-9AEB-5989D5D16B7A}
+		{FFB7D84D-DE85-439C-99F9-9A4F903D758A} = {4748F07C-D7C8-45CF-9990-25FF77DD75F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2BADA72-AE12-438E-B570-E651573BC3B2}

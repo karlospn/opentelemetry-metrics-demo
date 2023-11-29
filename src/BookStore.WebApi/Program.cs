@@ -21,20 +21,18 @@ builder.Services.AddSwaggerGen(opts =>
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.RegisterInfrastureDependencies(builder.Configuration);
 
-var meters = new OtelMetrics();
-
 builder.Services.AddOpenTelemetry().WithMetrics(opts => opts
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("BookStore.WebApi"))
-    .AddMeter(meters.MetricName)
+    .AddMeter(builder.Configuration.GetValue<string>("BookStoreMeterName"))
     .AddAspNetCoreInstrumentation()
     .AddProcessInstrumentation()
     .AddRuntimeInstrumentation()
     .AddView(
         instrumentName: "orders-price",
-        new ExplicitBucketHistogramConfiguration { Boundaries = new double[] { 15, 30, 45, 60, 75 } })
+        new ExplicitBucketHistogramConfiguration { Boundaries = [15, 30, 45, 60, 75] })
     .AddView(
         instrumentName: "orders-number-of-books",
-        new ExplicitBucketHistogramConfiguration { Boundaries = new double[] { 1, 2, 5 } })
+        new ExplicitBucketHistogramConfiguration { Boundaries = [1, 2, 5] })
     .AddOtlpExporter(options  =>
     {
         options.Endpoint = new Uri(builder.Configuration["Otlp:Endpoint"] 

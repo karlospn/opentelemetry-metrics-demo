@@ -7,26 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace BookStore.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class BooksController : ControllerBase
+    public class BooksController(IMapper mapper,
+        IBookService bookService) : ControllerBase
     {
-        private readonly IBookService _bookService;
-        private readonly IMapper _mapper;
-
-        public BooksController(IMapper mapper,
-                                IBookService bookService)
-        {
-            _mapper = mapper;
-            _bookService = bookService;
-        }
-
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
-            var books = await _bookService.GetAll();
-
-
-            return Ok(_mapper.Map<IEnumerable<BookResultDto>>(books));
+            var books = await bookService.GetAll();
+            return Ok(mapper.Map<IEnumerable<BookResultDto>>(books));
         }
 
         [HttpGet("{id:int}")]
@@ -34,11 +23,11 @@ namespace BookStore.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetById(int id)
         {
-            var book = await _bookService.GetById(id);
+            var book = await bookService.GetById(id);
 
             if (book == null) return NotFound();
 
-            return Ok(_mapper.Map<BookResultDto>(book));
+            return Ok(mapper.Map<BookResultDto>(book));
         }
 
         [HttpGet]
@@ -47,11 +36,11 @@ namespace BookStore.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetBooksByCategory(int categoryId)
         {
-            var books = await _bookService.GetBooksByCategory(categoryId);
+            var books = await bookService.GetBooksByCategory(categoryId);
 
             if (!books.Any()) return NotFound();
 
-            return Ok(_mapper.Map<IEnumerable<BookResultDto>>(books));
+            return Ok(mapper.Map<IEnumerable<BookResultDto>>(books));
         }
 
         [HttpPost]
@@ -61,12 +50,12 @@ namespace BookStore.WebApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            var book = _mapper.Map<Book>(bookDto);
-            var bookResult = await _bookService.Add(book);
+            var book = mapper.Map<Book>(bookDto);
+            var bookResult = await bookService.Add(book);
 
             if (bookResult == null) return BadRequest();
 
-            return Ok(_mapper.Map<BookResultDto>(bookResult));
+            return Ok(mapper.Map<BookResultDto>(bookResult));
         }
 
         [HttpPut]
@@ -76,7 +65,7 @@ namespace BookStore.WebApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            var bookResult = await _bookService.Update(_mapper.Map<Book>(bookDto));
+            var bookResult = await bookService.Update(mapper.Map<Book>(bookDto));
             if (bookResult == null) return BadRequest();
 
             return Ok(bookDto);
@@ -87,10 +76,10 @@ namespace BookStore.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Remove(int id)
         {
-            var book = await _bookService.GetById(id);
+            var book = await bookService.GetById(id);
             if (book == null) return NotFound();
 
-            await _bookService.Remove(book);
+            await bookService.Remove(book);
 
             return Ok();
         }
@@ -101,7 +90,7 @@ namespace BookStore.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<Book>>> Search(string bookName)
         {
-            var books = _mapper.Map<List<Book>>(await _bookService.Search(bookName));
+            var books = mapper.Map<List<Book>>(await bookService.Search(bookName));
 
             if (books == null || books.Count == 0) return NotFound("None book was founded");
 
@@ -114,11 +103,11 @@ namespace BookStore.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<Book>>> SearchBookWithCategory(string searchedValue)
         {
-            var books = _mapper.Map<List<Book>>(await _bookService.SearchBookWithCategory(searchedValue));
+            var books = mapper.Map<List<Book>>(await bookService.SearchBookWithCategory(searchedValue));
 
-            if (!books.Any()) return NotFound("None book was founded");
+            if (books.Count == 0) return NotFound("None book was founded");
 
-            return Ok(_mapper.Map<IEnumerable<BookResultDto>>(books));
+            return Ok(mapper.Map<IEnumerable<BookResultDto>>(books));
         }
     }
 }

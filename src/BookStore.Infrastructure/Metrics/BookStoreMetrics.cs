@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using Microsoft.Extensions.Configuration;
 
 namespace BookStore.Infrastructure.Metrics
 {
-    public class OtelMetrics
+    public class BookStoreMetrics
     {
         //Books meters
         private  Counter<int> BooksAddedCounter { get; }
@@ -26,12 +28,11 @@ namespace BookStore.Infrastructure.Metrics
         private Counter<int> TotalOrdersCounter { get; }
 
 
-        public string MetricName { get; }
 
-        public OtelMetrics(string meterName = "BookStore")
+        public BookStoreMetrics(IMeterFactory meterFactory, IConfiguration configuration)
         {
-            var meter = new Meter(meterName);
-            MetricName = meterName;
+            var meter = meterFactory.Create(configuration["BookStoreMeterName"] ?? 
+                                            throw new NullReferenceException("BookStore meter missing a name"));
 
             BooksAddedCounter = meter.CreateCounter<int>("books-added", "Book");
             BooksDeletedCounter = meter.CreateCounter<int>("books-deleted", "Book");

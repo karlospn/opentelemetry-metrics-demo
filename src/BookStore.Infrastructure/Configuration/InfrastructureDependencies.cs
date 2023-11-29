@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<IOrderService, OrderService>();
 
-            services.AddSingleton<OtelMetrics>();
+            services.AddSingleton<BookStoreMetrics>();
 
             return services;
         }

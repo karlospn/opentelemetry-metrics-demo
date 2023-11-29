@@ -7,25 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace BookStore.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class OrdersController : ControllerBase
+    public class OrdersController(IMapper mapper,
+        IOrderService orderService) : ControllerBase
     {
-        private readonly IOrderService _orderService;
-        private readonly IMapper _mapper;
-
-        public OrdersController(IMapper mapper,
-                                    IOrderService orderService)
-        {
-            _mapper = mapper;
-            _orderService = orderService;
-        }
-
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
-            var orders = await _orderService.GetAll();
+            var orders = await orderService.GetAll();
 
-            return Ok(_mapper.Map<IEnumerable<OrderResultDto>>(orders));
+            return Ok(mapper.Map<IEnumerable<OrderResultDto>>(orders));
         }
 
         [HttpGet("{id:int}")]
@@ -33,12 +24,12 @@ namespace BookStore.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetById(int id)
         {
-            var order = await _orderService.GetById(id);
+            var order = await orderService.GetById(id);
 
             if (order is null) 
                 return NotFound();
 
-            return Ok(_mapper.Map<OrderResultDto>(order));
+            return Ok(mapper.Map<OrderResultDto>(order));
         }
 
         [HttpPost]
@@ -48,12 +39,12 @@ namespace BookStore.WebApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            var order = _mapper.Map<Order>(orderDto);
-            var result = await _orderService.Add(order);
+            var order = mapper.Map<Order>(orderDto);
+            var result = await orderService.Add(order);
 
             if (result == null) return BadRequest();
 
-            return Ok(_mapper.Map<OrderResultDto>(result));
+            return Ok(mapper.Map<OrderResultDto>(result));
         }
 
 
@@ -62,13 +53,13 @@ namespace BookStore.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Remove(int id)
         {
-            var order = await _orderService.GetById(id);
+            var order = await orderService.GetById(id);
             if (order == null) return NotFound();
 
-            var result = await _orderService.Remove(order);
+            var result = await orderService.Remove(order);
             if (result == null)  return BadRequest();
 
-            return Ok(_mapper.Map<OrderResultDto>(result));
+            return Ok(mapper.Map<OrderResultDto>(result));
         }
     }
 }
