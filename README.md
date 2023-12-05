@@ -217,15 +217,15 @@ If you want to play around with them on your own, the link to download them is a
 
 ### **.NET /api/orders endpoint metrics**
 
-![aspnet-core-orders-endpoint-dashboard](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/feature/net8/docs/aspnet-core-orders-endpoint-dashboard.png)
+![aspnet-core-orders-endpoint-dashboard](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/main/docs/aspnet-core-orders-endpoint-dashboard.png)
 
 ### **.NET /api/books endpoint metrics**
 
-![aspnet-core-books-endpoint-dashboard](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/feature/net8/docs/aspnet-core-books-endpoint-dashboard.png)
+![aspnet-core-books-endpoint-dashboard](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/main/docs/aspnet-core-books-endpoint-dashboard.png)
 
 ### **.NET general metrics dashboard**
 
-![aspnet-core-metrics-dashboard](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/feature/net8/docs/aspnet-core-metrics-dashboard.png)
+![aspnet-core-metrics-dashboard](https://raw.githubusercontent.com/karlospn/opentelemetry-metrics-demo/main/docs/aspnet-core-metrics-dashboard.png)
 
 # **Changelog**
 
